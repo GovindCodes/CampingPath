@@ -7,9 +7,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
 var campground= [
-    {name:"Himalaya", image:"https://images.unsplash.com/photo-1471115853179-bb1d604434e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1918&q=80"},
+    {name:"Himalaya", image:"https://cdn.pixabay.com/photo/2015/11/07/11/26/campfire-1031141__480.jpg"},
     {name:"Dawki", image:"https://images.unsplash.com/photo-1526011881888-8dba3f788ede?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"},
-    {name:"Cherapunjii", image:"https://images.unsplash.com/photo-1533632359083-0185df1be85d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"}
+    {name:"Cherapunjii", image:"https://cdn.pixabay.com/photo/2017/09/26/13/50/rv-2788677__480.jpg"},
+    {name:"Himalaya", image:"https://cdn.pixabay.com/photo/2015/11/07/11/26/campfire-1031141__480.jpg"},
+    {name:"Dawki", image:"https://images.unsplash.com/photo-1526011881888-8dba3f788ede?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"},
+    {name:"Cherapunjii", image:"https://cdn.pixabay.com/photo/2017/09/26/13/50/rv-2788677__480.jpg"},
+     {name:"Himalaya", image:"https://cdn.pixabay.com/photo/2015/11/07/11/26/campfire-1031141__480.jpg"},
+    {name:"Dawki", image:"https://images.unsplash.com/photo-1526011881888-8dba3f788ede?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"},
+    {name:"Cherapunjii", image:"https://cdn.pixabay.com/photo/2017/09/26/13/50/rv-2788677__480.jpg"}
 ]
 
 app.get("/", function(req, res){
