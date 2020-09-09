@@ -1,15 +1,101 @@
 # YelpCamp
 
-Introducing YelpCamp
+> A Node.js web application
 
-    Yelpcamp is an application for a fictional start up that allows you to add campgrounds for other users to comment and rate, as view campgrounds added by other users. Not much more I can say about it.
+## Features
 
+* Authentication:
+  
+  * User login with username and password
 
-Features
+  * Admin sign-up with admin code
 
-    * Add Campgrounds
-        The ultimate goal of the app is to add campgrounds, be they real or fictitious, I’m not much of a camper myself so I usually add fictional ones like for example, I made a campground called Lake Hylia Lodge, which is a reference to the Zelda series, however if you want to add real campground information feel free to, I actually implore anyone that visits the site to put up one of their favorite camping sports.
-    * User Authentication
-        You can sign up, sign in, and its a necessary process to go through if you want to contribute to the site, why? because when a user is signed in it allows them to add campgrounds and comments, to really add a sense of community and interactivity. It’s pretty barebones at the minute but hopefully in future updates I can implement more features that require User Auth that make it feel like a full fledged app, maybe even OAuth so you can sign in using existing media platforms. There are also measures in place to help you reset your password should you need to, pretty cool right?
-    * Comments
-        As said above, you can add comments to campgrounds to express all kinds of things, maybe you’ve visited the campsite and want to give a little review (unless of course you’re viewing one on mine, which are highly fictitious, but feel free to drop a few words anyway), or whatever else you feel the need to.
+* Authorization:
+
+  * One cannot manage posts and view user profile without being authenticated
+
+  * One cannot edit or delete posts and comments created by other users
+
+  * Admin can manage all posts and comments
+
+* Manage campground posts with basic functionalities:
+
+  * Create, edit and delete posts and comments
+
+  * Upload campground photos
+
+  * Display campground location on Google Maps
+  
+  * Search existing campgrounds
+
+* Manage user account with basic functionalities:
+
+  * ~~Password reset via email confirmation~~ (disabled)
+
+  * Profile page setup with sign-up
+
+* Flash messages responding to users' interaction with the app
+
+* Responsive web design
+
+### Custom Enhancements
+
+* Update campground photos when editing campgrounds
+
+* Update personal information on profile page
+
+* Improve image load time on the landing page using Cloudinary
+
+* Use Helmet to strengthen security
+ 
+## Getting Started
+
+> This app contains API secrets and passwords that have been hidden deliberately, so the app cannot be run with its features on your local machine. However, feel free to clone this repository if necessary.
+
+### Clone or download this repository
+
+```sh
+git clone https://github.com/govindk11/YelpCamp.git
+```
+
+### Install dependencies
+
+```sh
+npm install
+```
+
+or
+
+```sh
+yarn install
+```
+
+### Comments in code
+
+Some comments in the source code are course notes and therefore might not seem necessary from a developer's point of view.
+
+## Built with
+
+### Front-end
+
+* [ejs](http://ejs.co/)
+* [Google Maps APIs](https://developers.google.com/maps/)
+* [Bootstrap](https://getbootstrap.com/docs/3.3/)
+
+### Back-end
+
+* [express](https://expressjs.com/)
+* [mongoDB](https://www.mongodb.com/)
+* [mongoose](http://mongoosejs.com/)
+* [async](http://caolan.github.io/async/)
+* [crypto](https://nodejs.org/api/crypto.html#crypto_crypto)
+* [helmet](https://helmetjs.github.io/)
+* [passport](http://www.passportjs.org/)
+* [passport-local](https://github.com/jaredhanson/passport-local#passport-local)
+* [express-session](https://github.com/expressjs/session#express-session)
+* [method-override](https://github.com/expressjs/method-override#method-override)
+* [nodemailer](https://nodemailer.com/about/)
+* [moment](https://momentjs.com/)
+* [cloudinary](https://cloudinary.com/)
+* [geocoder](https://github.com/wyattdanger/geocoder#geocoder)
+* [connect-flash](https://github.com/jaredhanson/connect-flash#connect-flash)
