@@ -3,28 +3,42 @@ var app= express();
 var bodyParser= require('body-parser');
 
 app.use(bodyParser.urlencoded({extended: true}));
-
 app.set("view engine", "ejs");
 
-var campground= [
-    {name:"Himalaya", image:"https://cdn.pixabay.com/photo/2015/11/07/11/26/campfire-1031141__480.jpg"},
-    {name:"Dawki", image:"https://images.unsplash.com/photo-1526011881888-8dba3f788ede?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"},
-    {name:"Cherapunjii", image:"https://cdn.pixabay.com/photo/2017/09/26/13/50/rv-2788677__480.jpg"},
-    {name:"Himalaya", image:"https://cdn.pixabay.com/photo/2015/11/07/11/26/campfire-1031141__480.jpg"},
-    {name:"Dawki", image:"https://images.unsplash.com/photo-1526011881888-8dba3f788ede?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"},
-    {name:"Cherapunjii", image:"https://cdn.pixabay.com/photo/2017/09/26/13/50/rv-2788677__480.jpg"},
-     {name:"Himalaya", image:"https://cdn.pixabay.com/photo/2015/11/07/11/26/campfire-1031141__480.jpg"},
-    {name:"Dawki", image:"https://images.unsplash.com/photo-1526011881888-8dba3f788ede?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"},
-    {name:"Cherapunjii", image:"https://cdn.pixabay.com/photo/2017/09/26/13/50/rv-2788677__480.jpg"}
-]
+//MONGO setup
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/yelp_camp', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('Connected to DB!'))
+.catch(error => console.log(error.message));
+
+
+
+//Schema setup
+const Schema = mongoose.Schema
+const campgroundSchema = new Schema({
+name : String,
+image: String
+});
+
+const Campground = mongoose.model('Campground',campgroundSchema);
 
 app.get("/", function(req, res){
    res.render("landing");
 })
 
 app.get("/campgrounds", function(req, res){
-   
-    res.render("campground", {campgrounds: campground});
+   //Get all dbs from database
+   Campground.find({}, function(err, allCampgrounds){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("campground", {campgrounds: allCampgrounds});
+        }
+   })
+    
 })
 
 app.post("/campgrounds", function(req, res){
@@ -34,10 +48,18 @@ app.post("/campgrounds", function(req, res){
     var name= req.body.name;
     var image= req.body.image;
     var newCampground= {name: name, image:image};
-    campground.push(newCampground);
+    //save image to a database
 
-    //redirect to campground get page
-    res.redirect("/campgrounds");
+    Campground.create(newCampground, function(err, newlyCreated){
+        if(err){
+            console.log(err);
+        }else{
+             //redirect to campground get page
+            res.redirect("/campgrounds");
+        }
+    })
+
+   
 })
 
 app.get("/campgrounds/new", function(req, res){
