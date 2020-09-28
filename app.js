@@ -12,17 +12,9 @@ mongoose.connect('mongodb://localhost:27017/yelp_camp', {
   useUnifiedTopology: true
 })  
 
-
-
-//Schema setup
-const Schema = mongoose.Schema
-const campgroundSchema = new Schema({
-name : String,
-image: String,
-description: String
-});
-
-const Campground = mongoose.model('Campground',campgroundSchema);
+var Campground= require("./models/campground");
+// var User= require("./models/user");
+// var Comment= require("./models/comments");
 // Campground.create({
 //     name: "Tso Moriri Lake, Ladakh",
 //     image: "https://cdn.pixabay.com/photo/2017/06/17/03/17/gongga-snow-mountain-2411069__480.jpg",
