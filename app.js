@@ -1,12 +1,14 @@
 var express= require('express');
 var app= express();
 var bodyParser= require('body-parser');
+const mongoose = require('mongoose');
+var seedDB= require("./seed");
 
+seedDB();
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
 //MONGO setup
-const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/yelp_camp', {
   useNewUrlParser: true,
   useUnifiedTopology: true
