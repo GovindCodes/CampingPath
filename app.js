@@ -4,7 +4,7 @@ var bodyParser= require('body-parser');
 const mongoose = require('mongoose');
 var seedDB= require("./seed");
 
-seedDB();
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
@@ -13,22 +13,11 @@ mongoose.connect('mongodb://localhost:27017/yelp_camp', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })  
+seedDB();
 
 var Campground= require("./models/campground");
 // var User= require("./models/user");
 // var Comment= require("./models/comments");
-// Campground.create({
-//     name: "Tso Moriri Lake, Ladakh",
-//     image: "https://cdn.pixabay.com/photo/2017/06/17/03/17/gongga-snow-mountain-2411069__480.jpg",
-//     description: "Tsomoriri Lake is the highest lake in the world and located in Ladakh. Camping here is the experience of a lifetime"
-// }, function(err, newlyCreated){
-//     if(err){
-//         console.log(err);
-//     }else{
-//          //redirect to campground get page
-//         console.log("adaded")
-//     }
-// })
 
 app.get("/", function(req, res){
    res.render("landing");
@@ -78,10 +67,11 @@ app.get("/campgrounds/new", function(req, res){
 //SHOW ROUTE- show data for campground
 app.get("/campgrounds/:id", function(req, res){
     //find campground with provided id
-    Campground.findById(req.params.id, function(err, foundCampground){
+    Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
         if(err){
             console.log(err);
         }else{
+            console.log(foundCampground);
             //render show template with that campground
             res.render("show", {campground: foundCampground});
         }
