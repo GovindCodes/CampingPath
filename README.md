@@ -1,4 +1,4 @@
-# YelpCamp
+# CampingPath
 
 > A Node.js web application
 
